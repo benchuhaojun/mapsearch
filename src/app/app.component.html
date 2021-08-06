@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="column" style="background-color:#aaa;">
+      <h2>Search</h2>
+      <input type="string" placeholder="Enter Search" [ngModel]="inputTest" (ngModelChange)="getTestParam($event)" (ngModelChange)="getSearchs()"/>
+      <p>Found: {{searchs?.found}} &nbsp; Pages: {{searchs?.totalNumPages}}</p>
+      <p>Set Page Number: <input type="number" placeholder="Page" min="1" max={{searchs?.totalNumPages}} [ngModel]="inputPage" (ngModelChange)="getPageNum($event)" (ngModelChange)="getSearchs()" /></p>
+      <div class="task" *ngFor="let payerType of searchs?.results;" (click)="getCoordClick(payerType.LATITUDE,payerType.LONGITUDE)">
+        <h3>
+            {{payerType.SEARCHVAL}}, {{payerType.ADDRESS}}
+        </h3>
+    </div>
+    </div>
+    <div class="column" style="background-color:#bbb;">
+      <h2>Map Image</h2>
+      <p>Click on Location Options for Image
+        <button (click)="onZoom(true)">+</button>
+        <button (click)="onZoom(false)">-</button>
+      </p>
+      <h3><img src="{{img}}"/></h3>
+    </div>
+  </div>
+
